@@ -3,6 +3,7 @@ from .models import User
 
 
 class UserModelSerializer(HyperlinkedModelSerializer):
+    # TODO: figure out what about password field
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ['id', 'url', 'login']

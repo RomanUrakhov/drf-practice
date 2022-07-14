@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 const ProjectItem = ({ project }) => {
   return (
     <tr>
-      <td>{project.name}</td>
+      <td><Link to={`${project.id}`}>{project.name}</Link></td>
       <td>{project.repo_link}</td>
     </tr>
   );
@@ -9,8 +11,9 @@ const ProjectItem = ({ project }) => {
 
 const ProjectList = ({ projects }) => {
   const projectItemList = projects.map((project) => (
-    <ProjectItem key={project.url} project={project} />
+    <ProjectItem key={project.id} project={project} />
   ));
+
   return (
     <table>
       <thead>

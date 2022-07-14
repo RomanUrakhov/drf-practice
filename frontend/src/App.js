@@ -1,9 +1,10 @@
 import React from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate, Link } from "react-router-dom";
 import "./App.css";
 import axios from "axios";
 import UserList from "./components/User";
 import ProjectList from "./components/Project";
+import ProjectTodoList from "./components/ProjectTodos";
 import TodoList from "./components/Todo";
 import NotFound404 from "./components/Error";
 
@@ -41,27 +42,44 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <BrowserRouter>
-          <Routes>
-            <Route
-              exact
-              path="/users"
-              element={<UserList users={this.state.users} />}
-            />
-            <Route
-              path="/"
-              element={<ProjectList projects={this.state.projects} />}
-            />
-            <Route
-              path="/todos"
-              element={<TodoList todos={this.state.todos} />}
-            />
-            <Route path="/projects" element={<Navigate to="/" replace />} />
-            <Route path="*" element={<NotFound404 />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
+        <div>
+          <BrowserRouter>
+            <nav>
+              <ul>
+                <li>
+                  <Link to="/">Projects</Link>
+                </li>
+                <li>
+                  <Link to="users">Users</Link>
+                </li>
+                <li>
+                  <Link to="todos">Todos</Link>
+                </li>
+              </ul>
+            </nav>
+            <Routes>
+              <Route
+                exact
+                path="/users"
+                element={<UserList users={this.state.users} />}
+              />
+              <Route
+                path="/"
+                element={<ProjectList projects={this.state.projects} />}
+              />
+              <Route
+                path="/todos"
+                element={<TodoList todos={this.state.todos} />}
+              />
+              <Route
+                  path=":id"
+                  element={<ProjectTodoList todos={this.state.todos} />}
+                />
+              <Route path="/projects" element={<Navigate to="/" replace />} />
+              <Route path="*" element={<NotFound404 />} />
+            </Routes>
+          </BrowserRouter>
+        </div>
     );
   }
 }
