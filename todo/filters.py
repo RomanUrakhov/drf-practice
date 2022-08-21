@@ -1,5 +1,3 @@
-from dataclasses import fields
-from pyexpat import model
 import django_filters
 
 from .models import Project, Todo
