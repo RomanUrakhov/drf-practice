@@ -1,9 +1,10 @@
+from django.contrib.auth import get_user_model
 from rest_framework.serializers import HyperlinkedModelSerializer
-from .models import User
+
+User = get_user_model()
 
 
 class UserModelSerializer(HyperlinkedModelSerializer):
-    # TODO: figure out what about password field
     class Meta:
         model = User
-        fields = ['id', 'url', 'login']
+        fields = ['id', 'url', 'email']
